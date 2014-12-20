@@ -28,6 +28,11 @@ gulp.task('assets', function() {
         .pipe(gulp.dest('./deploy/assets/'));
 });
 
+gulp.task('components', function() {
+    return gulp.src('./bower_components/**/*')
+        .pipe(gulp.dest('./deploy/bower_components/'));
+});
+
 gulp.task('server', function() {
     connect.server({
         root: './deploy/html/',
@@ -40,6 +45,6 @@ gulp.watch('./src/js/*.js', ['js']);
 gulp.watch('./src/stylus/*.styl', ['styl']);
 gulp.watch('./src/assets/**/*', ['assets']);
 
-gulp.task('build', ['jade', 'js', 'styl', 'assets']);
+gulp.task('build', ['jade', 'js', 'styl', 'assets', 'components']);
 
 gulp.task('default', ['build']);

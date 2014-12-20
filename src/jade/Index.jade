@@ -1,20 +1,12 @@
 doctype html
 html(lang="en")
     head
-        title= pageTitle
-        script(type='text/javascript').
-            if (foo) {
-                bar(1 + 5)
-            }
+        title= Hangman
+        script(src="../bower_components/angular/angular.js")
+        script(src="../bower_components/bootstrap/dist/js/bootstrap.js")
+        script(src="../bower_components/jquery/dist/jquery.js")
+        link(src="../bower_components/fontawesome/css/font-awesome.css", rel='stylesheet')
+
+        script(src="../js/main.js")
+        link(href="../stylus/main.css", rel='stylesheet')
     body
-        h1 Jade - node template engine
-        #container.col
-            if youAreUsingJade
-                p You are amazing
-            else
-                p Get on it!
-            p.
-                Jade is a terse and simple
-                templating language with a
-                strong focus on performance
-                and powerful features..
