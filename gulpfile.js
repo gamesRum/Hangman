@@ -3,6 +3,7 @@ var jade = require('gulp-jade');
 var uglify = require('gulp-uglify');
 var stylus = require('gulp-stylus');
 var connect = require('gulp-connect');
+watch = require('gulp-watch');
 
 gulp.task('jade', function() {
     gulp.src('./src/jade/*.jade')
@@ -33,6 +34,11 @@ gulp.task('server', function() {
         port: 8000
     });
 });
+
+gulp.watch('./src/jade/*.jade', ['jade']);
+gulp.watch('./src/js/*.js', ['js']);
+gulp.watch('./src/stylus/*.styl', ['styl']);
+gulp.watch('./src/assets/**/*', ['assets']);
 
 gulp.task('build', ['jade', 'js', 'styl', 'assets']);
 
