@@ -2,11 +2,107 @@ doctype html
 html(lang="en")
     head
         title= Hangman
-        script(src="../bower_components/angular/angular.js")
-        script(src="../bower_components/bootstrap/dist/js/bootstrap.js")
-        script(src="../bower_components/jquery/dist/jquery.js")
-        link(src="../bower_components/fontawesome/css/font-awesome.css", rel='stylesheet')
 
-        script(src="../js/main.js")
-        link(href="../stylus/main.css", rel='stylesheet')
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+
+        link(href="../bower_components/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
+        link(href="../bower_components/fontawesome/css/font-awesome.css", rel='stylesheet')
+        link(href="../css/main.css", rel='stylesheet')
     body
+        .header
+            .container
+                .row
+                    .col-xs-6
+                        h2.red The Hangman
+                    .col-xs-6.menu
+                        h5 Create a account
+                        h5 |
+                        h5 Login
+        .container.wrapper
+            .row
+                .col-sm-6
+                    .title
+                        h3
+                            span Welcome to
+                            span.red &nbsp;The Hangman
+                    h4 Instructions to play:
+                    ol
+                        li Write a theme.
+                        li Write up to 10 phrases in separated lines.
+                        li Write the name of the players.
+                        li Press START!.
+                    input.form-control(type="text" placeholder="Enter a theme name. Ex: Movies")
+                    h4 Your Words:
+                    textarea.form-control(type="text" placeholder="Enter a phrase, max 24 chars long." rows="4")
+                    h4 Players names:
+                    .row
+                        .col-sm-8
+                            textarea.form-control(type="text" placeholder="player 1" rows="4")
+                        .col-sm-4.text-align
+                            button.btn.start(type="button")
+                                .rotate START!
+                .col-sm-6
+                    .animation-area
+                        .row
+                            .col-sm-8.col-sm-offset-2
+                                .img-container
+
+                        .word-area
+                            .row
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+
+                            .row.padding-top
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+                                .col-sm-1
+                                    .word
+
+        script(src="../bower_components/angular/angular.js")
+        script(src="../bower_components/jquery/dist/jquery.js")
+        script(src="../bower_components/bootstrap/dist/js/bootstrap.min.js")
+        script(src="../js/main.js")

@@ -35,8 +35,11 @@ gulp.task('components', function() {
 
 gulp.task('server', function() {
     connect.server({
-        root: './deploy/html/',
-        port: 8000
+        root: './deploy/',
+        port: 8000,
+        open: {
+            file: './deploy/html/index.html'
+        }
     });
 });
 
