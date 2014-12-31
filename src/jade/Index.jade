@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="en" ng-app="Hangman")
     head
         title= Hangman
         link(rel="shortcut icon" type="image/png" href="../assets/img/favicon.ico")
@@ -7,10 +7,10 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
 
-        link(href="../bower_components/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
-        link(href="../bower_components/fontawesome/css/font-awesome.css", rel='stylesheet')
+        link(href="../lib/bootstrap/dist/css/bootstrap.min.css", rel="stylesheet")
+        link(href="../lib/fontawesome/css/font-awesome.css", rel='stylesheet')
         link(href="../css/main.css", rel='stylesheet')
-    body
+    body(ng-controller="HangmanController")
         .header
             .container
                 .row
@@ -33,76 +33,47 @@ html(lang="en")
                         li Write up to 10 phrases in separated lines.
                         li Write the name of the players.
                         li Press START!.
-                    input.form-control(type="text" placeholder="Enter a theme name. Ex: Movies")
-                    h4 Your Words:
-                    textarea.form-control(type="text" placeholder="Enter a phrase, max 24 chars long." rows="4")
-                    h4 Players names:
-                    .row
-                        .col-sm-8
-                            textarea.form-control(type="text" placeholder="player 1" rows="4")
-                        .col-sm-4.text-align
-                            button.btn.start(type="button")
-                                .rotate START!
+                    form(name="options" novalidate)
+                        h4 Your Category:
+                        .form-group(ng-class="{'has-error':options.category.$invalid}")
+                            input.form-control(ng-model="category" name="category" type="text" maxlength="{{HG_CONFIG.maxlength}}" placeholder="Enter a theme name. Ex: Movies" ng-minlength="{{HG_CONFIG.minlength}}" ng-maxlength="24")
+                        h4 Your Sentences:
+                        .form-group(ng-class="{'has-error':options.sentences.$invalid}")
+                            textarea.form-control(ng-model="sentences" name="sentences" type="text" placeholder="Enter a phrase, max 24 chars long." rows="4" ng-change="validate()")
+                        h4 Players names:
+                        .row
+                            .col-sm-8
+                                textarea.form-control(ng-model="players" type="text" placeholder="player 1" rows="4")
+                            .col-sm-4.text-align
+                                button.btn.start(type="button" ng-hide="gameStarted" ng-click="startGame()")
+                                    .rotate START!
+                                button.btn.start(type="button" ng-show="gameStarted" )
+                                    .rotate SURRENDER!
                 .col-sm-6
                     .animation-area
+                        .row(ng-show="gameStarted")
+                            .col-sm-12.has-error(ng-show="currentSentence.length > 0") You Lose
+                            .col-sm-12.has-valid(ng-show="currentSentence.length == 0") You Win
                         .row
                             .col-sm-8.col-sm-offset-2
                                 .img-container
 
                         .word-area
                             .row
-                                .col-sm-1
+                                .col-sm-1(ng-repeat="letter in letters track by $index")
                                     .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
+                                        span(ng-show="letterExists(letter)") {{letter}}
+                                        span(ng-hide="letterExists(letter)") ?
 
-                            .row.padding-top
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
-                                .col-sm-1
-                                    .word
+                        .row
+                            .col-sm-12
+                                span(ng-repeat="alphabet in alphabetArray" ng-click="checkLetter(alphabet)")
+                                    span.clickable {{alphabet}}
 
-        script(src="../bower_components/angular/angular.js")
-        script(src="../bower_components/jquery/dist/jquery.js")
-        script(src="../bower_components/bootstrap/dist/js/bootstrap.min.js")
+
+
+        script(src="../lib/angular/angular.js")
+        script(src="../lib/angular-ui-utils/ui-utils.min.js")
+        script(src="../lib/jquery/dist/jquery.js")
+        script(src="../lib/bootstrap/dist/js/bootstrap.min.js")
         script(src="../js/main.js")

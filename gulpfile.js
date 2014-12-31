@@ -30,7 +30,7 @@ gulp.task('assets', function() {
 
 gulp.task('components', function() {
     return gulp.src('./bower_components/**/*')
-        .pipe(gulp.dest('./deploy/bower_components/'));
+        .pipe(gulp.dest('./deploy/lib/'));
 });
 
 gulp.task('server', function() {
