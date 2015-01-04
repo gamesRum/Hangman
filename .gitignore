@@ -4,3 +4,4 @@
 /node_modules
 /deploy/*
 /bower_components/*
+npm-debug.log
