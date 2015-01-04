@@ -3,7 +3,7 @@ var jade = require('gulp-jade');
 var uglify = require('gulp-uglify');
 var stylus = require('gulp-stylus');
 var connect = require('gulp-connect');
-watch = require('gulp-watch');
+var watch = require('gulp-watch');
 
 gulp.task('jade', function() {
     gulp.src('./src/jade/*.jade')
@@ -33,7 +33,7 @@ gulp.task('components', function() {
         .pipe(gulp.dest('./deploy/lib/'));
 });
 
-gulp.task('server', function() {
+gulp.task('server', ['build'], function() {
     connect.server({
         root: './deploy/',
         port: 8000,
@@ -49,5 +49,4 @@ gulp.watch('./src/stylus/*.styl', ['styl']);
 gulp.watch('./src/assets/**/*', ['assets']);
 
 gulp.task('build', ['jade', 'js', 'styl', 'assets', 'components']);
-
 gulp.task('default', ['build']);
